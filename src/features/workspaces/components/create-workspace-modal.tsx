@@ -10,22 +10,25 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useCreateWorkspace } from '../api/use-create-workspace';
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export const CreateWorkspaceModal = () => {
+  const router = useRouter();
   const [open, setOpen] = useCreateWorkspaceModal();
   const [name, setName] = useState('');
   const { mutate, isPending } = useCreateWorkspace();
   const handleClose = () => {
     setOpen(false);
-    // TODO: Limpar formulario
+    setName('');
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     mutate(
       { name },
       {
-        onSuccess(data) {
-          console.log(data);
+        onSuccess(id) {
+          router.push(`/workspace/${id}`);
+          handleClose();
         },
       },
     );
