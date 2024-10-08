@@ -18,10 +18,8 @@ export const SidebarButton = ({
     <div className="flex flex-col items-center justify-center gap-y-0.5 cursor-pointer group">
       <Button
         variant="transparent"
-        className={cn(
-          'size-0 p-2 group-hover:bg-accent/20',
-          isActive && 'bg-accent/20',
-        )}
+        size="icon"
+        className={cn('group-hover:bg-accent/20', isActive && 'bg-accent/20')}
       >
         <Icon className="w-6 h-6 text-white" />
       </Button>
